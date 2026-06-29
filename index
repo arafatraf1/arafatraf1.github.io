@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rafi | CSE Student</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0d1117;
+      --surface: #161b22;
+      --border:  #21262d;
+      --accent:  #58a6ff;
+      --text:    #e6edf3;
+      --muted:   #8b949e;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(13,17,23,0.92);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO — side by side layout */
+    .hero {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+    .hero-text { flex: 1; }
+    .hero-photo {
+      flex-shrink: 0;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* placeholder shown when no image is set */
+    .hero-photo .placeholder {
+      font-size: 4rem;
+      line-height: 1;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: .8rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero-subtitle {
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: .04em;
+      margin-bottom: .8rem;
+    }
+    .hero p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 440px;
+      margin-bottom: 1.8rem;
+    }
+    .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: .55rem 1.3rem;
+      border-radius: 6px;
+      font-size: .875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s, transform .15s;
+    }
+    .btn:hover { opacity: .85; transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #0d1117; }
+    .btn-ghost   { border: 1px solid var(--border); color: var(--text); }
+
+    /* SECTIONS */
+    section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    /* COURSES / INTERESTS — simple list */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .info-block h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: .6rem;
+    }
+    .info-block ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+    .info-block li {
+      font-size: .875rem;
+      color: var(--muted);
+      padding-left: .9rem;
+      position: relative;
+    }
+    .info-block li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--border);
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-top: 1rem;
+    }
+    .tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: .35rem .8rem;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    /* CONTACT */
+    .contact-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .contact-links a {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .55rem 1.1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: .875rem;
+      color: var(--text);
+      transition: border-color .2s;
+    }
+    .contact-links a:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: .8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* MOBILE */
+    @media (max-width: 560px) {
+      nav { padding: 1rem; }
+      .nav-links { gap: 1rem; }
+      .hero { flex-direction: column-reverse; align-items: flex-start; gap: 1.5rem; padding: 3rem 1.2rem 2rem; }
+      .hero-photo { width: 110px; height: 110px; }
+      section { padding: 2.5rem 1.2rem; }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="#">rafi</a>  <!-- ✏️ your name/handle -->
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <p class="hero-subtitle">CSE Student · UIU Dhaka</p>  <!-- ✏️ your uni/year -->
+      <h1>Hey, I'm <span>Rafi</span>.</h1>  <!-- ✏️ your name -->
+      <p>
+        Passionate about computer science, algorithms, and building things from scratch.
+        Currently in my second year at UIU.
+      </p>  <!-- ✏️ your one-liner -->
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#about">About me</a>
+        <a class="btn btn-ghost"   href="#contact">Say hi</a>
+      </div>
+    </div>
+
+    <!-- PHOTO — two options below, pick one -->
+    <div class="hero-photo">
+
+      <!-- OPTION A: Use your own photo.
+           1. Put your photo file (e.g. photo.jpg) in the same folder as index.html
+           2. Replace the emoji block below with this line:
+                <img src="rafi.jpg" alt="Rafi" />
+      -->
+
+      <!-- OPTION B: placeholder emoji (shown by default) -->
+      <span class="placeholder">🧑‍💻</span>
+
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <h2>A bit about me</h2>
+    <p style="color:var(--muted); margin-bottom:1.5rem;">
+      I'm studying Computer Science & Engineering at United International University.
+      I enjoy learning how things work under the hood — from data structures to operating systems.
+      Outside of class, I like gaming, watching tech videos, and trying to write cleaner code each day.
+    </p>  <!-- ✏️ write anything about yourself -->
+
+    <div class="info-grid">
+      <div class="info-block">
+        <h3>Current Courses</h3>
+        <ul>
+          <li>OOP (Java)</li>           <!-- ✏️ your actual courses -->
+          <li>Data Structures & Algorithms</li>
+          <li>Statistics</li>
+          <li>Engineering Ethics</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3>Interests</h3>
+        <ul>
+          <li>Algorithms & Problem Solving</li>  <!-- ✏️ your interests -->
+          <li>Software Development</li>
+          <li>Gaming</li>
+          <li>Technology</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <h2>What I know so far</h2>
+    <div class="skills-grid">
+      <!-- ✏️ Add or remove tags freely -->
+      <span class="tag">Java</span>
+      <span class="tag">C++</span>
+      <span class="tag">Python</span>
+      <span class="tag">Data Structures</span>
+      <span class="tag">OOP</span>
+      <span class="tag">Algorithms</span>
+      <span class="tag">Git & GitHub</span>
+      <span class="tag">HTML & CSS</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <h2>Get in touch</h2>
+    <p style="color:var(--muted); margin-bottom:1.2rem;">
+      Feel free to reach out — always happy to connect.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:arafathasanrafi18@email.com">✉️ Email</a>              <!-- ✏️ your email -->
+      <a href="https://github.com/arafatraf1" target="_blank">🐙 GitHub</a>   <!-- ✏️ your github -->
+      <a href="https://facebook.com/arafathasan.rafiah" target="_blank">📘 Facebook</a> <!-- ✏️ or remove -->
+    </div>
+  </section>
+
+  <footer>
+    Rafi &nbsp;·&nbsp; CSE, UIU &nbsp;·&nbsp; 2026  <!-- ✏️ your name & uni -->
+  </footer>
+
+</body>
+</html>
