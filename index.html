@@ -1,302 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rafi | CSE Student</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rafi — CSE Student</title>
+<meta name="description" content="Rafi — CSE student at United International University, Dhaka. Algorithms, Java, C++, and software development."/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg:      #0d1117;
-      --surface: #161b22;
-      --border:  #21262d;
-      --accent:  #58a6ff;
-      --text:    #e6edf3;
-      --muted:   #8b949e;
-    }
+  :root {
+    --paper:    #f3ede1;
+    --paper-2:  #ece4d3;
+    --ink:      #2b2620;
+    --ink-soft: #5c5448;
+    --line:     #c9bfa9;
+    --line-soft:#ddd3bd;
+    --red:      #b5482f;
+    --green:    #4d6b4f;
+    --card:     #fbf7ee;
+    --display: 'Fraunces', serif;
+    --body: 'Archivo', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
+  html { scroll-behavior: smooth; }
 
-    /* NAV */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2rem;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: rgba(13,17,23,0.92);
-      backdrop-filter: blur(8px);
-      z-index: 100;
-    }
-    .logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--text); }
+  body {
+    background: var(--paper);
+    background-image:
+      repeating-linear-gradient(transparent, transparent 31px, var(--line-soft) 31px, var(--line-soft) 32px);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.6;
+  }
 
-    /* HERO — side by side layout */
-    .hero {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 5rem 2rem 3rem;
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-    }
-    .hero-text { flex: 1; }
-    .hero-photo {
-      flex-shrink: 0;
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid var(--border);
-      background: var(--surface);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    /* placeholder shown when no image is set */
-    .hero-photo .placeholder {
-      font-size: 4rem;
-      line-height: 1;
-    }
-    .hero h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: .8rem;
-    }
-    .hero h1 span { color: var(--accent); }
-    .hero-subtitle {
-      font-size: .9rem;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: .04em;
-      margin-bottom: .8rem;
-    }
-    .hero p {
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 440px;
-      margin-bottom: 1.8rem;
-    }
-    .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn {
-      display: inline-block;
-      padding: .55rem 1.3rem;
-      border-radius: 6px;
-      font-size: .875rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: opacity .2s, transform .15s;
-    }
-    .btn:hover { opacity: .85; transform: translateY(-1px); }
-    .btn-primary { background: var(--accent); color: #0d1117; }
-    .btn-ghost   { border: 1px solid var(--border); color: var(--text); }
+  ::selection { background: var(--red); color: var(--paper); }
 
-    /* SECTIONS */
-    section {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 3.5rem 2rem;
-      border-top: 1px solid var(--border);
-    }
-    .section-label {
-      font-size: .75rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.2rem;
-    }
-    h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
 
-    /* COURSES / INTERESTS — simple list */
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-    .info-block h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: .9rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: .6rem;
-    }
-    .info-block ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: .35rem;
-    }
-    .info-block li {
-      font-size: .875rem;
-      color: var(--muted);
-      padding-left: .9rem;
-      position: relative;
-    }
-    .info-block li::before {
-      content: '–';
-      position: absolute;
-      left: 0;
-      color: var(--border);
-    }
+  .reveal { opacity: 0; transform: translateY(14px) rotate(var(--r, 0deg)); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0) rotate(var(--r, 0deg)); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
 
-    /* SKILLS */
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .6rem;
-      margin-top: 1rem;
-    }
-    .tag {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: .35rem .8rem;
-      font-size: .82rem;
-      color: var(--muted);
-    }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.3rem 3rem;
+    border-bottom: 2px solid var(--ink);
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    z-index: 100;
+  }
+  .logo {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .logo em { font-style: italic; color: var(--red); }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: .76rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--ink-soft);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 3px;
+    transition: color .2s, border-color .2s;
+  }
+  .nav-links a:hover { color: var(--red); border-color: var(--red); }
 
-    /* CONTACT */
-    .contact-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-    .contact-links a {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .55rem 1.1rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: .875rem;
-      color: var(--text);
-      transition: border-color .2s;
-    }
-    .contact-links a:hover { border-color: var(--accent); color: var(--accent); }
+  .hero {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 5.5rem 3rem 3.5rem;
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .hero-label {
+    font-family: var(--mono);
+    font-size: .76rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--red);
+    margin-bottom: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+  .hero-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 .it { font-style: italic; font-weight: 500; color: var(--red); }
+  .hero .lede {
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+    max-width: 460px;
+    margin-bottom: 2rem;
+  }
+  .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .7rem 1.5rem;
+    font-family: var(--mono);
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    text-decoration: none;
+    border: 1.5px solid var(--ink);
+    transition: all .2s ease;
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: var(--red); border-color: var(--red); transform: translate(-2px,-2px); box-shadow: 3px 3px 0 var(--ink); }
+  .btn-ghost { background: transparent; color: var(--ink); }
+  .btn-ghost:hover { transform: translate(-2px,-2px); box-shadow: 3px 3px 0 var(--ink); }
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: .8rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
+  .card {
+    background: var(--card);
+    border: 1.5px solid var(--ink);
+    padding: 1.1rem;
+    box-shadow: 6px 6px 0 var(--line);
+    transform: rotate(1.4deg);
+  }
+  .card .photo {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--paper-2);
+    margin-bottom: .8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card .photo img { width: 100%; height: 100%; object-fit: cover; filter: sepia(8%) contrast(1.02); }
+  .card-caption {
+    font-family: var(--mono);
+    font-size: .72rem;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px dashed var(--line);
+    padding-top: .6rem;
+  }
 
-    /* MOBILE */
-    @media (max-width: 560px) {
-      nav { padding: 1rem; }
-      .nav-links { gap: 1rem; }
-      .hero { flex-direction: column-reverse; align-items: flex-start; gap: 1.5rem; padding: 3rem 1.2rem 2rem; }
-      .hero-photo { width: 110px; height: 110px; }
-      section { padding: 2.5rem 1.2rem; }
-      .info-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 4rem 3rem;
+  }
+  .section-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    font-family: var(--mono);
+    font-size: .74rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--ink-soft);
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    padding: .35rem .8rem;
+    margin-bottom: 1.4rem;
+  }
+  .section-tab .n { color: var(--red); font-weight: 600; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.3rem;
+  }
+  hr.rule { border: none; border-top: 2px solid var(--ink); margin: 0 auto; max-width: 980px; }
+
+  .about-text { color: var(--ink-soft); max-width: 640px; margin-bottom: 2.6rem; font-size: 1.02rem; }
+  .about-text .drop {
+    font-family: var(--display);
+    font-size: 3.4rem;
+    float: left;
+    line-height: .8;
+    padding: .1rem .3rem 0 0;
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .info-block { border-left: 2px solid var(--ink); padding-left: 1.3rem; }
+  .info-block h3 {
+    font-family: var(--mono);
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--red);
+    margin-bottom: .9rem;
+  }
+  .info-block ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+  .info-block li { font-size: .96rem; color: var(--ink-soft); }
+  .info-block li b { color: var(--ink); font-weight: 600; }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.4rem;
+    margin-top: .5rem;
+  }
+  .project-card {
+    border: 1.5px dashed var(--line);
+    background: var(--card);
+    padding: 1.6rem 1.4rem;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .project-card .pnum { font-family: var(--mono); font-size: .72rem; color: var(--ink-soft); }
+  .project-card .ptitle {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: .8rem;
+  }
+  .project-card .ptag {
+    font-family: var(--mono);
+    font-size: .68rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--line);
+    margin-top: 1rem;
+  }
+  .projects-note {
+    margin-top: 1.6rem;
+    font-family: var(--mono);
+    font-size: .82rem;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+  .projects-note::before { content: '→'; color: var(--red); }
+
+  .skills-grid { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: .5rem; }
+  .tag {
+    font-family: var(--mono);
+    font-size: .82rem;
+    padding: .5rem 1rem;
+    border: 1.5px solid var(--ink);
+    background: var(--card);
+    transition: all .2s ease;
+  }
+  .tag:hover { background: var(--ink); color: var(--paper); transform: translate(-2px,-2px); box-shadow: 3px 3px 0 var(--red); }
+
+  .contact-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.6rem; }
+  .contact-row a {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .8rem 1.3rem;
+    border: 1.5px solid var(--ink);
+    background: var(--card);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: .85rem;
+    transition: all .2s ease;
+  }
+  .contact-row a:hover { background: var(--ink); color: var(--paper); transform: translate(-2px,-2px); box-shadow: 3px 3px 0 var(--red); }
+
+  footer {
+    text-align: center;
+    padding: 2.4rem;
+    font-family: var(--mono);
+    font-size: .76rem;
+    color: var(--ink-soft);
+    border-top: 2px solid var(--ink);
+  }
+
+  @media (max-width: 720px) {
+    nav { padding: 1rem 1.3rem; }
+    .nav-links { gap: 1.1rem; }
+    .hero { grid-template-columns: 1fr; padding: 3rem 1.3rem 2rem; }
+    .card { transform: none; max-width: 260px; }
+    section { padding: 2.8rem 1.3rem; }
+    .info-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+    hr.rule { display: none; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
-    <a class="logo" href="#">rafi</a>  <!-- name/handle -->
+    <a class="logo" href="#">Rafi<em>.</em></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
   <div class="hero">
     <div class="hero-text">
-      <p class="hero-subtitle">CSE Student · United International University Dhaka</p>  <!--  uni/year -->
-      <h1>Hey, I'm <span>Rafi</span>.</h1>  <!--  name -->
-      <p>
+      <p class="hero-label">CSE Student, Dhaka</p>
+      <h1>Hello, I'm<br><span class="it">Rafi.</span></h1>
+      <p class="lede">
         Passionate about computer science, algorithms, and building things from scratch.
-        Currently in my second year at UIU.
-      </p>  <!--  one-liner -->
+        Currently in my second year at United International University.
+      </p>
       <div class="btn-row">
         <a class="btn btn-primary" href="#about">About me</a>
-        <a class="btn btn-ghost"   href="#contact">Say hi</a>
+        <a class="btn btn-ghost" href="#contact">Say hi</a>
       </div>
     </div>
 
-    <!-- PHOTO — two options below, pick one -->
-    <div class="hero-photo">
-
-      <!-- OPTION A: Use your own photo.
-           1. Put your photo file (e.g. photo.jpg) in the same folder as index.html
-           2. Replace the emoji block below with this line:
-                <img src="rafi.jpg" alt="Rafi" />
-      -->
-
-      <!-- OPTION B: placeholder emoji (shown by default) -->
-      <img src="rafi.jpg" alt="Rafi" />
-
+    <div class="card reveal" style="--r: 1.4deg;">
+      <div class="photo">
+        <img src="rafi.jpg" alt="Rafi" onerror="this.replaceWith(Object.assign(document.createElement('div'),{textContent:'R',style:'font-family:Fraunces,serif;font-weight:700;font-size:3.2rem;color:var(--ink-soft);'}))"/>
+      </div>
+      <div class="card-caption">
+        <span>Rafi</span>
+        <span> </span>
+      </div>
     </div>
   </div>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <p class="section-label">About</p>
+  <hr class="rule"/>
+
+  <section id="about" class="reveal">
+    <span class="section-tab"><span class="n">01</span> About</span>
     <h2>A bit about me</h2>
-    <p style="color:var(--muted); margin-bottom:1.5rem;">
-      I'm studying Computer Science & Engineering at United International University.
+    <p class="about-text">
+      <span class="drop">I</span>'m studying Computer Science & Engineering at United International University.
       I enjoy learning how things work under the hood — from data structures to operating systems.
-      Outside of class, I like gaming, watching tech videos, and trying to write cleaner code each day.
-    </p>  <!-- ✏️ write anything about yourself -->
+      
+    </p>
 
     <div class="info-grid">
       <div class="info-block">
         <h3>Current Courses</h3>
         <ul>
-          <li>OOP (Java)</li>           <!-- actual courses -->
-          <li>Data Structures & Algorithms</li>
-          <li>Statistics</li>
-          <li>Engineering Ethics</li>
+          <li><b>OOP</b> — Java</li>
+          <li><b>DSA</b> — Data Structures & Algorithms</li>
+          <li><b>Stats</b> — Statistics</li>
+          <li><b>Ethics</b> — Engineering Ethics</li>
         </ul>
       </div>
       <div class="info-block">
         <h3>Interests</h3>
         <ul>
-          <li>Algorithms & Problem Solving</li>  <!--interests -->
+          <li>Algorithms & Problem Solving</li>
           <li>Software Development</li>
           <li>Gaming</li>
           <li>Technology</li>
@@ -305,12 +382,37 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <p class="section-label">Skills</p>
+  <hr class="rule"/>
+
+  <section id="projects" class="reveal">
+    <span class="section-tab"><span class="n">02</span> Projects</span>
+    <h2>What I'm building</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <span class="pnum">001</span>
+        <span class="ptitle">Coming soon</span>
+        <span class="ptag">tbd</span>
+      </div>
+      <div class="project-card">
+        <span class="pnum">002</span>
+        <span class="ptitle">Coming soon</span>
+        <span class="ptag">tbd</span>
+      </div>
+      <div class="project-card">
+        <span class="pnum">003</span>
+        <span class="ptitle">Coming soon</span>
+        <span class="ptag">tbd</span>
+      </div>
+    </div>
+    <p class="projects-note">first project write-up landing here soon</p>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="skills" class="reveal">
+    <span class="section-tab"><span class="n">03</span> Skills</span>
     <h2>What I know so far</h2>
     <div class="skills-grid">
-      <!-- ✏️ Add or remove tags freely -->
       <span class="tag">Java</span>
       <span class="tag">C++</span>
       <span class="tag">Python</span>
@@ -318,27 +420,38 @@
       <span class="tag">OOP</span>
       <span class="tag">Algorithms</span>
       <span class="tag">Git & GitHub</span>
-      <span class="tag">HTML & CSS</span>
+     
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <p class="section-label">Contact</p>
+  <hr class="rule"/>
+
+  <section id="contact" class="reveal">
+    <span class="section-tab"><span class="n">04</span> Contact</span>
     <h2>Get in touch</h2>
-    <p style="color:var(--muted); margin-bottom:1.2rem;">
+    <p class="about-text" style="margin-bottom:0;">
       Feel free to reach out — always happy to connect.
     </p>
-    <div class="contact-links">
-      <a href="mailto:arafathasanrafi18@email.com">✉️ Email</a>              <!--  email -->
-      <a href="https://github.com/arafatraf1" target="_blank">🐙 GitHub</a>   <!--  github -->
-      <a href="https://facebook.com/arafathasan.rafiah" target="_blank">📘 Facebook</a> <!--  remove -->
+    <div class="contact-row">
+      <a href="mailto:arafathasanrafi18@email.com">✉ Email</a>
+      <a href="https://github.com/arafatraf1" target="_blank" rel="noopener">⌥ GitHub</a>
+      <a href="www.linkedin.com/in/arafat-hasan-rafi" target="_blank" rel="noopener">in LinkedIn</a>
+      <a href="https://facebook.com/arafathasan.rafiah" target="_blank" rel="noopener">◆ Facebook</a>
     </div>
   </section>
 
   <footer>
-    Rafi &nbsp;·&nbsp; CSE, UIU &nbsp;·&nbsp; 2026  <!-- ✏️  name & uni -->
+    Rafi · CSE, UIU · <span id="year"></span>
   </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  </script>
 
 </body>
 </html>
